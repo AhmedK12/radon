@@ -50,9 +50,9 @@ const fromPairs = ()=>{
 
 router.get('/hello', function (req, res) {
 
-    // chunk()
-    // tail()
-    // union()
+    chunk()
+    tail()
+    union()
     fromPairs()
     res.send('Hello there!')
 });
