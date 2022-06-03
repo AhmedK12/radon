@@ -1,11 +1,68 @@
 const express = require('express');
+const { find } = require('underscore');
 const router = express.Router();
+
+
+let players = [{"name": "gopal",
+"dob": "1/09/1995",
+"gender": "male",
+"city": "delhi",
+"sports": [
+    "soccer"
+],
+},
+{"name": "montu",
+"dob": "1/09/1999",
+"gender": "male",
+"city": "delhi",
+"sports": [
+    "cricket"
+],
+},
+
+{"name": "nurul",
+"dob": "1/09/1895",
+"gender": "male",
+"city": "delhi",
+"sports": [
+    "cricket"
+],
+},
+{"name": "danish",
+"dob": "1/09/1985",
+"gender": "male",
+"city": "delhi",
+"sports": [
+    "bollyball"
+],
+},
+
+]
 
 router.get('/students/:name', function(req, res) {
     let studentName = req.params.name
     console.log(studentName)
     res.send(studentName)
 })
+
+router.get('/players', function(req, res) {
+    
+    res.send(players)
+})
+
+router.post('/players', function(req, res) {
+     let newplayer = req.body
+     let playerName = newplayer.name
+     let element = players.find((element)=>{
+         if(element.name == playerName)
+           return true;
+         return false
+     })
+     if(element==undefined)
+       players.push(newplayer)
+    res.send(players)
+})
+
 
 router.get("/random" , function(req, res) {
     res.send("hi there")
